@@ -6,27 +6,33 @@ using System.Threading.Tasks;
 
 namespace Q1
 {
+    public static class Extensions {
+        public static IEnumerable<IEnumerable<T>> Split<T>(this T[] array, int size) {
+            for (var i = 0; i < (float)array.Length / size; i++) {
+                yield return array.Skip(i * size).Take(size);
+            }
+        }
+    }
     public class Class1
     {
-        public static int[] FindLargest3Sums1(int[] inp) {
-            int len = inp.Length;
-            int[] sums3 = new int[Math.Max(len / 3 + 1, 3)];
-            for (int i = 0; i < len; i++) sums3[i / 3] += inp[i];
-
-            return sums3
-            .OrderByDescending(n => n)
-            .Take(3)
-            .ToArray();
-        }
         public static int[] FindLargest3Sums(int[] inp) {
-            int len = inp.Length;
-            inp = inp.OrderByDescending(n => n).ToArray();
-            int[] sums3 = new int[Math.Max(len / 3 + 1, 3)];
-            for (int i = 0; i < len; i++) sums3[i / 3] += inp[i];
-
-            return sums3
-            .Take(3)
-            .ToArray();
+            return inp
+                    .Split(3)
+                    .Select(grp => grp.Sum())
+                    .OrderByDescending(n => n)
+                    .Concat(new int[] {0, 0, 0})
+                    .Take(3)
+                    .ToArray();
+        }
+        public static int[] FindLargest3SumsNonAdj(int[] inp) {
+            return inp
+                    .OrderByDescending(n => n)
+                    .ToArray()
+                    .Split(3)
+                    .Select(grp => grp.Sum())
+                    .Concat(new int[] { 0, 0, 0 })
+                    .Take(3)
+                    .ToArray();
         }
     }
 }
