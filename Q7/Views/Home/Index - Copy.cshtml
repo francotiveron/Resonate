@@ -1,31 +1,65 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Survey";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div id="bodyContainer" ng-app="Q7App">
+    <section id="content">
+        <div class="container">
+            <div class="row">
+                <div ng-controller="Q7Controller" ng-init="setPage(0)">
+                    <table><tr>
+                        <td>
+                            <table>
+                                <tr ng-repeat="x in surveys">
+                                    <td>
+                                        <a ng-click="setItem($index)" href="#">
+                                            <div style="border:1px solid black">
+                                                <span style="display:inline-block; width:100px">{{ x.user }}</span><span style="display:inline-block; width:100px; text-align:right">{{ x.score }}</span>
+                                            </div>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="border:1px solid black; width:200px" >
+                            <table>
+                                <tr style="height:10%">
+                                    <td>
+                                        <span style="display:inline; width:50%; font-weight:bold">{{ curUser }}</span>
+                                    </td>
+                                    <td>
+                                        <span style="display:inline; width:50%; text-align:right; font-weight:bold">{{ curScore }}</span>
+                                    </td>
+                                </tr>
+                                <tr style="height:90%">
+                                    <td>{{curVerb}}</td>
+                                </tr>
+                            </table>                           
+                        </td>
+                    </tr></table>
+                    <table>
+                        <tr>
+                            <td><a ng-click="prevPage()"><< Prev</a></td>
+                            <td><a ng-click="setPage(0)"> 1 </a></td>
+                            <td><a ng-click="setPage(1)"> 2 </a></td>
+                            <td><a ng-click="setPage(2)"> 3 </a></td>
+                            <td><a ng-click="setPage(3)"> 4 </a></td>
+                            <td><a ng-click="setPage(4)"> 5 </a></td>
+                            <td><a ng-click="setPage(5)"> 6 </a></td>
+                            <td><a ng-click="setPage(6)"> 7 </a></td>
+                            <td><a ng-click="setPage(7)"> 8 </a></td>
+                            <td><a ng-click="setPage(8)"> 9 </a></td>
+                            <td><a ng-click="setPage(9)"> 10 </a></td>
+                            <td><a ng-click="nextPage()">Next >></a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/app/Q7.js")
+}

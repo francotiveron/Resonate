@@ -6,6 +6,7 @@
         $scope.curScore = "";
         $scope.curPage = 0;
         $scope.pageSize = 10;
+        $scope.pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         function _getPage() {
             $scope.surveys = [];
