@@ -20,7 +20,7 @@ namespace Q1
                     .Split(3)
                     .Select(grp => grp.Sum())
                     .OrderByDescending(n => n)
-                    .Concat(new int[] {0, 0, 0})
+                    .Concat(new int[] { 0, 0, 0 })
                     .Take(3)
                     .ToArray();
         }
