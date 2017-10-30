@@ -1,0 +1,8 @@
+6.	Which Sql Query is faster? Why? (Discuss)
+a.	SELECT * FROM SomeTable Where Date >= ‘2011-01-01’ AND Date < ‘2012-01-01’
+b.	SELECT * FROM SomeTable Where DATEPART(yy, Date) = 2011
+
+b. is slower because of the function call in the WHERE clause. This has at least two importan impacts:
+
+1) in b. the function (DATEPART in this case) must be called for each record, in a. the filter is applied directly to the column value
+2) using an index for the Data column would be effective in a. but in b. the index couldn't be used.
