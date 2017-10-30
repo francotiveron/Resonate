@@ -1,1 +1,1 @@
-# Resonate
+# Resonate Assignments
